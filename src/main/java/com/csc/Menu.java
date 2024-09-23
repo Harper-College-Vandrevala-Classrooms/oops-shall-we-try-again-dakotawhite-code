@@ -41,7 +41,7 @@ public class Menu {
                 "Please enter a value between 1 and 100, \"default\", or \"exit\" to quit: ",
                 "Your entry is an invalid input. Enter a valid integer between 1 and 100.");
         if (n1 == null) {
-            System.out.println("Exited the program.");
+            System.out.println("User aborted program.");
             return;
         }
         System.out.println("The value chosen by the user is " + n1);
@@ -50,7 +50,7 @@ public class Menu {
                 "Please enter a non-negative value, \"default\", or \"exit\" to quit: ",
                 "Your entry is an invalid input. Enter a non-negative integer.");
         if (n2 == null) {
-            System.out.println("Exited the program.");
+            System.out.println("User aborted program.");
             return;
         }
         System.out.println("The value chosen by the user is " + n2);
@@ -59,7 +59,7 @@ public class Menu {
                 "Please enter any integer, \"default\", or \"exit\" to quit: ",
                 "Your entry is an invalid input. Enter an integer.");
         if (n3 == null) {
-            System.out.println("Exited the program.");
+            System.out.println("User aborted program.");
             return;
         }
         System.out.println("The value chosen by the user is " + n3);
