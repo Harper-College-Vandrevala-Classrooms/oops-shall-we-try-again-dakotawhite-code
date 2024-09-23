@@ -1,19 +1,28 @@
 package com.csc;
-import java.util.Scanner;
 
+import java.util.Scanner;
 public class Menu {
-    public static int promptInt(Integer lowerBound, Integer upperBound, String prompt, String errorMessage) {
+    public static Integer promptInt(Integer lowerBound, Integer upperBound, String prompt, String errorMessage) {
         Scanner scan = new Scanner(System.in);
         Integer input = null;
+        String userInput;
+        int defaultValue = 100;
 
         while (true) {
             System.out.print(prompt);
-            if (!scan.hasNextInt()) {
+            userInput = scan.nextLine();
+            if (userInput.equalsIgnoreCase("default")) {
+                return defaultValue;
+            }
+            if (userInput.equalsIgnoreCase("exit")) {
+                return null;
+            }
+            try {
+                input = Integer.parseInt(userInput);
+            } catch (NumberFormatException exception) {
                 System.out.println(errorMessage);
-                scan.next();
                 continue;
             }
-            input = scan.nextInt();
             if (lowerBound != null && input < lowerBound) {
                 System.out.println(errorMessage);
                 continue;
@@ -28,13 +37,31 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        int n1 = promptInt(1,100,"Please enter a value between 1 and 100: ","Your entry is an invalid input. Enter a valid integer between 1 and 100." );
+        Integer n1 = promptInt(1, 100,
+                "Please enter a value between 1 and 100, \"default\", or \"exit\" to quit: ",
+                "Your entry is an invalid input. Enter a valid integer between 1 and 100.");
+        if (n1 == null) {
+            System.out.println("Exited the program.");
+            return;
+        }
         System.out.println("The value chosen by the user is " + n1);
 
-        int n2 = promptInt(0,null,"Please enter a non-negative value: ","Your entry is an invalid input. Enter a non-negative integer.");
+        Integer n2 = promptInt(0, null,
+                "Please enter a non-negative value, \"default\", or \"exit\" to quit: ",
+                "Your entry is an invalid input. Enter a non-negative integer.");
+        if (n2 == null) {
+            System.out.println("Exited the program.");
+            return;
+        }
         System.out.println("The value chosen by the user is " + n2);
 
-        int n3 = promptInt(null,null,"Please enter any integer: ","Your entry is an invalid input. Enter an integer.");
+        Integer n3 = promptInt(null, null,
+                "Please enter any integer, \"default\", or \"exit\" to quit: ",
+                "Your entry is an invalid input. Enter an integer.");
+        if (n3 == null) {
+            System.out.println("Exited the program.");
+            return;
+        }
         System.out.println("The value chosen by the user is " + n3);
     }
 }
